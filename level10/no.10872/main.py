@@ -1,7 +1,11 @@
 N = int(input())
-X = 1
 
-for i in range(N):
-    X *= i+1
 
-print(X)
+def d(x):
+    if x == 0:
+        return 1
+    else:
+        return d(x-1) * x
+
+
+print(d(N))
