@@ -6,9 +6,15 @@ __Table of content__
 - [Install](#install)
 - [Installed package](#installed-package)
 
-## Level1 입출력과 사칙연산
-1. Level1 입출력과 사칙연산
+## Level 1 입출력과 사칙연산
+1. Level 1 입출력과 사칙연산
 https://www.acmicpc.net/step/1
+
+2. Level 2 if문
+
+3. Level 3 for문
+
+4. Level 4 while문
 
 ## Install
 
