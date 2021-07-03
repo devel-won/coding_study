@@ -17,10 +17,11 @@ def check(x, y, num):
     return 1
 
 
-for i in range(9):
-    for j in range(9):
-        if Map[i][j] == 0:
+def dfs(x, y):
+    for i in range(9):
+        for j in range(9):
+            if Map[i][j] == 0:
 
-            pass
+                pass
 
 print("check")
