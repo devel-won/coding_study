@@ -22,6 +22,7 @@ def dfs(x, y):
         for j in range(9):
             if Map[i][j] == 0:
 
+
                 pass
 
 print("check")
