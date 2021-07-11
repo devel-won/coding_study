@@ -17,7 +17,7 @@ def check(x, y, num):
     return 1
 
 
-def dfs(x, y):
+def dfs(x, y, z ):
     for i in range(9):
         for j in range(9):
             if Map[i][j] == 0:
