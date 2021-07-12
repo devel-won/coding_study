@@ -11,16 +11,34 @@ def check(x, y, num):
             return 0
 
     for i in range(x//3 * 3, (x // 3 + 1) * 3):
-        for j in range((y//3 * 3, (y // 3 + 1) * 3)):
+        for j in range(y//3 * 3, (y // 3 + 1) * 3):
             if Map[i][j] == num:
                 return 0
     return 1
 
 
-def dfs(x, y, z ):
+def dfs():
+    global Map
+    count = 1
     for i in range(9):
         for j in range(9):
             if Map[i][j] == 0:
-                pass
+                count = 0
+                for s in range(1, 10):
+                    if check(i, j, s):
+                        Map[i][j] = s
+                        if dfs():
+                            return 1
+                        else:
+                            Map[i][j] = 0
+    if count:
+        return 1
+    else:
+        return 0
 
-print("check")
+dfs()
+
+for i in Map:
+    for j in i:
+        print(j, end=' ')
+    print()
