@@ -1,8 +1,14 @@
 import sys
 
 Map = []
+zero_list = []
 for i in range(9):
-    Map.append(list(map(int, sys.stdin.readline().strip().split())))
+    col = list(map(int, sys.stdin.readline().strip().split()))
+    Map.append(col)
+
+    for index, j in enumerate(col):
+        if j == 0:
+            zero_list.append([i, index])
 
 
 def check(x, y, num):
@@ -19,26 +25,43 @@ def check(x, y, num):
 
 def dfs():
     global Map
-    count = 1
-    for i in range(9):
-        for j in range(9):
-            if Map[i][j] == 0:
-                count = 0
-                for s in range(1, 10):
-                    if check(i, j, s):
-                        Map[i][j] = s
-                        if dfs():
-                            return 1
-                        else:
-                            Map[i][j] = 0
-    if count:
+    if len(zero_list) == 0:
         return 1
-    else:
-        return 0
+
+    i, j = zero_list[-1]
+
+    for s in range(1, 10):
+        if check(i, j, s):
+            Map[i][j] = s
+            del zero_list[-1]
+            if dfs():
+                return 1
+            else:
+                zero_list.append([i, j])
+
+    return 0
+
+    # for i in range(9):
+    #     for j in range(9):
+    #         if Map[i][j] == 0:
+    #             count = 0
+    #             for s in range(1, 10):
+    #                 if check(i, j, s):
+    #                     Map[i][j] = s
+    #                     if dfs():
+    #                         return 1
+    #                     else:
+    #                         Map[i][j] = 0
+    # if count:
+    #     return 1
+    # else:
+    #     return 0
 
 dfs()
 
 for i in Map:
-    for j in i:
-        print(j, end=' ')
-    print()
+    for index, j in enumerate(i):
+        if index == 8:
+            print(j)
+        else:
+            print(j, end=' ')
