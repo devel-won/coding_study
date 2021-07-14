@@ -38,24 +38,9 @@ def dfs():
                 return 1
             else:
                 zero_list.append([i, j])
+                Map[i][j] = 0
 
     return 0
-
-    # for i in range(9):
-    #     for j in range(9):
-    #         if Map[i][j] == 0:
-    #             count = 0
-    #             for s in range(1, 10):
-    #                 if check(i, j, s):
-    #                     Map[i][j] = s
-    #                     if dfs():
-    #                         return 1
-    #                     else:
-    #                         Map[i][j] = 0
-    # if count:
-    #     return 1
-    # else:
-    #     return 0
 
 dfs()
 
