@@ -11,16 +11,20 @@ for i in range(9):
             zero_list.append([i, index])
 
 
-def check(x, y, num):
+def check(x, y):
+    A = [i for i in range(1, 10)]
     for i in range(9):
-        if Map[x][i] == num or Map[i][y] == num:
-            return 0
+        if Map[x][i] in A:
+            A.remove(Map[x][i])
+        if Map[i][y] in A:
+            A.remove(Map[i][y])
 
     for i in range(x//3 * 3, (x // 3 + 1) * 3):
         for j in range(y//3 * 3, (y // 3 + 1) * 3):
-            if Map[i][j] == num:
-                return 0
-    return 1
+            if Map[i][j] in A:
+                A.remove(Map[i][j])
+
+    return A
 
 
 def dfs():
@@ -30,15 +34,14 @@ def dfs():
 
     i, j = zero_list[-1]
 
-    for s in range(1, 10):
-        if check(i, j, s):
-            Map[i][j] = s
-            del zero_list[-1]
-            if dfs():
-                return 1
-            else:
-                zero_list.append([i, j])
-                Map[i][j] = 0
+    for s in check(i, j):
+        Map[i][j] = s
+        del zero_list[-1]
+        if dfs():
+            return 1
+        else:
+            zero_list.append([i, j])
+            Map[i][j] = 0
 
     return 0
 
@@ -50,3 +53,13 @@ for i in Map:
             print(j)
         else:
             print(j, end=' ')
+
+# 0 0 0 0 0 0 0 0 0
+# 0 0 0 0 0 0 0 0 0
+# 0 0 0 0 0 0 0 0 0
+# 0 0 0 0 0 0 0 0 0
+# 0 0 0 0 0 0 0 0 0
+# 0 0 0 0 0 0 0 0 0
+# 0 0 0 0 0 0 0 0 0
+# 0 0 0 0 0 0 0 0 0
+# 0 0 0 0 0 0 0 0 0
