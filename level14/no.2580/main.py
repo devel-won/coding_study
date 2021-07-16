@@ -23,7 +23,6 @@ def check(x, y):
         for j in range(y//3 * 3, (y // 3 + 1) * 3):
             if Map[i][j] in A:
                 A.remove(Map[i][j])
-
     return A
 
 
@@ -42,7 +41,6 @@ def dfs():
         else:
             zero_list.append([i, j])
             Map[i][j] = 0
-
     return 0
 
 dfs()
