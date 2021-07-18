@@ -33,6 +33,7 @@ def dfs():
 
     i, j = zero_list[-1]
 
+
     for s in check(i, j):
         Map[i][j] = s
         del zero_list[-1]
