@@ -2,6 +2,10 @@ import sys
 
 Map = []
 zero_list = []
+row = [[False]*9 for _ in range(9)]
+col = [[False]*9 for _ in range(9)]
+squ = [[False]*9 for _ in range(9)]
+
 for i in range(9):
     col = list(map(int, sys.stdin.readline().strip().split()))
     Map.extend(col)
@@ -9,6 +13,9 @@ for i in range(9):
     for index, j in enumerate(col):
         if j == 0:
             zero_list.append([i, index])
+        else:
+            row[i][j] = True
+            col[index][j] = True
 
 
 def check(x, y):
@@ -49,18 +56,8 @@ def dfs():
 
 dfs()
 
-# for i in Map:
-#     for index, j in enumerate(i):
-#         if index == 8:
-#             print(j)
-#         else:
-#             print(j, end=' ')
-
 for i in range(9):
     print(' '.join(map(str, Map[i * 9:(i + 1) * 9])))
-
-# for i in Map:
-#     print(' '.join(map(str, i)))
 
 # 0 0 0 0 0 0 0 0 0
 # 0 0 0 0 0 0 0 0 0
