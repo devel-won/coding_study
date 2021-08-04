@@ -19,23 +19,29 @@ max_value = 1000000000
 # / 연산자 결과는 정수만 사용
 
 
-def oper(x, y, oper):
-    if oper == 0:
+def cal(x, y, operator):
+    if operator == 0:
         return x + y
-    elif oper == 1:
+    elif operator == 1:
         return x - y
-    elif oper == 2:
+    elif operator == 2:
         return x * y
     else:
         return x//y
 
 
-# for문을 통해서 B_list 값들을 하나씩 선택해서 oper 함수에 넣고 하나씩 연산하고 최대값, 최솟값 구하기
+# for 문을 통해서 B_list 값들을 하나씩 선택해서 cal 함수에 넣고 하나씩 연산하고 최대값, 최솟값 구하기
 def dfs(in_list, value, n):
-    for i in range(len(in_list)):
-        if n == N-1:
-            oper(value, A[n], in_list[i])
-        else:
+    if n == N-1:
+        return cal(value, A[n], in_list[0])
+    else:
+        for i in range(len(in_list)):
             tmp_list = in_list.copy()
-            for j in dfs(tmp_list[j:], n-1):
-                yield [in_list[i]] + j
+
+            for j in dfs(tmp_list[j:], n+1):
+                return [in_list[i]] + j
+
+# 숫자 3개
+# 연산자 2개
+# in_list = 연산자 리스트
+# n을 1로 넣고 +1씩 해서 3까지 맞추는 걸로
