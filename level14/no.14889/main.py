@@ -1,47 +1,26 @@
 import sys
 
 N = int(sys.stdin.readline())
-A = list(map(int, sys.stdin.readline().strip().split()))
-B = list(map(int, sys.stdin.readline().strip().split()))
+half_N = N/2
+players = [i for i in range(N)]
+MAP = []
+min_value = N * 100
 
-B_list = []
-
-for index, count in enumerate(B):
-    B_list.extend([index] * count)
-
-min_value = 1000000000
-max_value = -1000000000
+for i in range(N):
+    A = list(map(int, sys.stdin.readline().strip().split()))
+    MAP.append(A)
 
 
-def cal(x, y, operator):
-    if operator == 0:
-        return x + y
-    elif operator == 1:
-        return x - y
-    elif operator == 2:
-        return x * y
+def dfs(input_list, output_list=[], n=0):
+    if n == half_N:
+        print(input_list)
     else:
-        return int(x/y)
+        for i in input_list:
+            tmp_out_list = output_list.copy()
+            tmp_list = input_list.copy()
+            tmp_list.remove(i)
+            tmp_out_list.append(i)
+            dfs(tmp_list, tmp_out_list, n + 1)
 
 
-def dfs(in_list, value, n):
-    global max_value
-    global min_value
-
-    if n == N-2:
-        result = cal(value, A[n+1], in_list[0])
-        if result > max_value:
-            max_value = result
-        if result < min_value:
-            min_value = result
-    else:
-        for i in range(len(in_list)):
-            tmp_list = in_list.copy()
-            del tmp_list[i]
-            dfs(tmp_list, cal(value, A[n+1], in_list[i]), n+1)
-
-
-dfs(B_list, A[0], 0)
-
-print(max_value)
-print(min_value)
+dfs(players)
