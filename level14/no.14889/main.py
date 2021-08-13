@@ -1,7 +1,7 @@
 import sys
 
 N = int(sys.stdin.readline())
-half_N = N/2
+half_N = N//2
 players = [i for i in range(N)]
 MAP = []
 min_value = N * 100
@@ -13,7 +13,7 @@ for i in range(N):
 
 def dfs(input_list, output_list=[], n=0):
     if n == half_N:
-        print(input_list)
+        print(input_list, output_list)
     else:
         for i in input_list:
             tmp_out_list = output_list.copy()
