@@ -23,4 +23,5 @@ def dfs(input_list, output_list=[], n=0):
             dfs(tmp_list, tmp_out_list, n + 1)
 
 
+
 dfs(players)
